@@ -1,17 +1,10 @@
-# Quickstart Plugin for NodeBB
+# Small fixes for SEO for Nodebb
 
-A starter kit for quickly creating NodeBB plugins. Comes with a pre-setup LESS file, server side JS script with an `action:app.load` hook, and a client-side script. Most plugins need at least one of the above, so this ought to save you some time. For a full list of hooks have a look at our [wiki page](https://github.com/NodeBB/NodeBB/wiki/Hooks), and for more information about creating plugins please visit our [documentation portal](https://docs.nodebb.org/).
+The plugin intends to add widgets and utilities to enhance the seo of the NodeBB forums.
 
-Fork this or copy it, and using your favourite text editor find and replace all instances of `nodebb-plugin-quickstart` with `nodebb-plugin-your-plugins-name`. Change the author's name in the LICENSE and package.json files.
-
-## Hello World
-
-Really simple, just edit `static/lib/main.js` and paste in `console.log('hello world');`, and that's it!
+This is not a complete seo solution though and adds tweaks here or there. Here is the list of tweaks supported till now:
+A widget to add topic last updated date on the topic view page.
 
 ## Installation
 
-    npm install nodebb-plugin-quickstart
-
-## Screenshots
-
-Don't forget to add screenshots!
+    npm install nodebb-plugin-seo

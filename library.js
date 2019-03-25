@@ -1,31 +1,51 @@
 'use strict';
 
-const controllers = require('./lib/controllers');
+var async = module.parent.require('async');
 
 const plugin = {};
+var app;
 
 plugin.init = function (params, callback) {
-	const router = params.router;
-	const hostMiddleware = params.middleware;
-	// const hostControllers = params.controllers;
-
-	// We create two routes for every view. One API call, and the actual route itself.
-	// Just add the buildHeader middleware to your route and NodeBB will take care of everything for you.
-
-	router.get('/admin/plugins/quickstart', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
-	router.get('/api/admin/plugins/quickstart', controllers.renderAdminPage);
-
+	app = params.app;
 	callback();
 };
 
-plugin.addAdminNavigation = function (header, callback) {
-	header.plugins.push({
-		route: '/plugins/quickstart',
-		icon: 'fa-tint',
-		name: 'Quickstart',
-	});
+plugin.defineWidgets = function (widgets, callback) {
+	var widget = {
+		widget: 'lastupdated',
+		name: 'Topic Last Updated',
+		description: 'Displays the date when the topic was last updated',
+		content: 'admin/lastupdated.tpl',
+	};
 
-	callback(null, header);
+	app.render(widget.content, {}, function (err, html) {
+		widget.content = html;
+		widgets.push(widget);
+		callback(err, widgets);
+	});
+};
+
+plugin.renderWidget = function (widgetRenderParams, callback) {
+	if (widgetRenderParams.area.template !== 'topic.tpl') {
+		return callback(null, widgetRenderParams);
+	}
+	async.waterfall([
+		function (next) {
+			const lastpost_time = new Date(widgetRenderParams.area.templateData.lastposttime);
+			const english = new Intl.DateTimeFormat('en-GB', { month: 'long', day: 'numeric', year: 'numeric' });
+			const last_post = english.format(lastpost_time);
+
+			app.render('widgets/lastupdated', {
+				topic: {
+					last_post,
+				},
+			}, next);
+		},
+		function (html, next) {
+			widgetRenderParams.html = html;
+			next(null, widgetRenderParams);
+		},
+	], callback);
 };
 
 module.exports = plugin;

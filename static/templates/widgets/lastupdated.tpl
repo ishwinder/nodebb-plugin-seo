@@ -1,0 +1,1 @@
+<span style="font-weight:bold">(Last Updated: {topic.last_post})</span>

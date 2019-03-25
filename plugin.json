@@ -1,5 +1,5 @@
 {
-	"id": "nodebb-plugin-quickstart",
+	"id": "nodebb-plugin-seo",
 	"url": "https://github.com/NodeBB/nodebb-plugin-quickstart",
 	"library": "./library.js",
 	"hooks": [
@@ -7,7 +7,10 @@
 			"hook": "static:app.load", "method": "init"
 		},
 		{
-			"hook": "filter:admin.header.build", "method": "addAdminNavigation"
+			"hook": "filter:widgets.getWidgets", "method": "defineWidgets"
+		},
+		{
+			"hook": "filter:widget.render:lastupdated", "method": "renderWidget"
 		}
 	],
 	"staticDirs": {

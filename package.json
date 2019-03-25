@@ -1,16 +1,16 @@
 {
-  "name": "nodebb-plugin-quickstart",
-  "version": "0.2.3",
-  "description": "A starter kit for quickly creating NodeBB plugins",
+  "name": "nodebb-plugin-seo",
+  "version": "1.0.0",
+  "description": "A plugin for small tweaks to nodebb forums.",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/psychobunny/nodebb-plugin-quickstart"
+    "url": "https://github.com/ishwinder/nodebb-plugin-seo"
   },
   "keywords": [
     "nodebb",
     "plugin",
-    "quickstart",
+    "seo",
     "shell"
   ],
   "husky": {
@@ -26,16 +26,16 @@
     ]
   },
   "author": {
-    "name": "psychobunny",
-    "email": "psycho.bunny@hotmail.com"
+    "name": "ishwinder",
+    "email": "singh.ishwinder@gmail.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/psychobunny/nodebb-plugin-quickstart/issues"
+    "url": "https://github.com/ishwinder/nodebb-plugin-seo/issues"
   },
   "readmeFilename": "README.md",
   "nbbpm": {
-    "compatibility": "^1.0.0"
+    "compatibility": "^1.10.0 || ^1.11.0 || || ^1.12.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.3.2",
